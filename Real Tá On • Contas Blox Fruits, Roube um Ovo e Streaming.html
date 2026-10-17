@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Real Tá On • Contas Blox Fruits, Roube um Ovo e Streaming</title>
+<style>
+:root{color-scheme:dark;--bg:#04060d;--card:#0a1226;--tx:#eaf0ff;--mut:#8b97bd;--bd:#15214a;--pri:#1d4ed8;--pri2:#0ea5e9;--ok:#22c55e;--bad:#ef4444;--warn:#f59e0b;--sh:0 6px 24px rgba(0,0,0,.5);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--card)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:12px clamp(12px,4vw,32px)}
+.logo{font-weight:800;font-size:1.2rem;background:linear-gradient(90deg,var(--pri),var(--pri2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sp{flex:1}
+button{font:inherit;cursor:pointer;border:0}
+.ib{background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:9px 13px;position:relative}
+.cnt{position:absolute;top:-6px;right:-6px;background:var(--pri);color:#fff;border-radius:99px;font-size:.7rem;min-width:20px;height:20px;display:grid;place-items:center;padding:0 5px}
+.hero{padding:clamp(28px,6vw,64px) clamp(12px,4vw,32px);text-align:center;background:linear-gradient(135deg,#000,#07153d 60%,#123a9c);color:#fff}
+.hero h1{margin:0 0 8px;font-size:clamp(1.6rem,5vw,2.8rem)}
+.hero p{margin:0 auto 16px;max-width:560px;opacity:.95}
+.tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;font-size:.85rem}
+.tags span{background:rgba(255,255,255,.2);padding:6px 12px;border-radius:99px}
+main{max-width:1200px;margin:0 auto;padding:20px clamp(12px,4vw,32px) 60px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;flex:1 1 100%}
+.tab{background:var(--card);color:var(--tx);border:1px solid var(--bd);padding:10px 16px;border-radius:99px;white-space:nowrap;font-weight:600}
+.tab.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+input[type=search]{flex:1 1 220px;padding:11px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;box-shadow:var(--sh);padding:16px;display:flex;flex-direction:column;gap:8px}
+.ico{font-size:2.2rem;width:56px;height:56px;display:grid;place-items:center;border-radius:14px;background:var(--bg)}
+.card h3{margin:0;font-size:1.02rem}
+.card p{margin:0;color:var(--mut);font-size:.88rem;flex:1}
+.price{font-size:1.4rem;font-weight:800}
+.stk{font-size:.8rem;font-weight:600}
+.stk.ok{color:var(--ok)}.stk.low{color:var(--warn)}.stk.out{color:var(--bad)}
+.add{background:linear-gradient(90deg,var(--pri),var(--pri2));color:#fff;padding:11px;border-radius:12px;font-weight:700}
+.add:disabled{background:var(--bd);color:var(--mut);cursor:not-allowed}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px 0}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;display:none}
+.ov.on{display:block}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--card);z-index:50;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+aside.on{transform:none}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ch h2{margin:0}
+.items{flex:1;overflow-y:auto}
+.it{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}
+.it b{flex:1;font-size:.92rem}
+.q{display:flex;align-items:center;gap:6px}
+.q button{width:28px;height:28px;border-radius:8px;background:var(--bg);color:var(--tx);border:1px solid var(--bd)}
+.tot{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:800;margin:12px 0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(120px);background:var(--tx);color:var(--bg);padding:12px 18px;border-radius:12px;z-index:60;transition:transform .25s;max-width:90%;text-align:center}
+.toast.on{transform:translateX(-50%)}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:24px 16px}
+.banner{max-width:1200px;margin:20px auto 0;padding:0 clamp(12px,4vw,32px)}
+.bn{border-radius:20px;padding:clamp(18px,4vw,32px);background:linear-gradient(120deg,#000,#0a1a4a 55%,#1d4ed8);border:1px solid var(--bd);display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;color:#fff;box-shadow:var(--sh)}
+.bn h2{margin:0 0 4px;font-size:clamp(1.2rem,4vw,1.8rem)}
+.bn p{margin:0;opacity:.85}
+.bn a{background:#fff;color:#0a1a4a;font-weight:800;padding:12px 20px;border-radius:12px;text-decoration:none;white-space:nowrap}
+</style>
+</head>
+<body>
+<header>
+<span class="logo">🎮 Real Tá On</span><span class="sp"></span>
+<button class="ib" id="cb" aria-label="Carrinho">🛒<span class="cnt" id="cc">0</span></button>
+</header>
+
+<section class="hero">
+<h1>Contas de jogos e streaming</h1>
+<p>Blox Fruits, Roube um Ovo e streaming com estoque atualizado e entrega rápida pelo Discord.</p>
+<div class="tags"><span>⚡ Entrega rápida</span><span>🛡️ Suporte 24h</span><span>💳 Pix</span></div>
+</section>
+
+<div class="banner"><div class="bn"><div><h2>🔥 Real Tá On: contas a partir de R$ 3</h2><p>Blox Fruits, Roube um Ovo e Spotify com estoque atualizado.</p></div><a href="https://discord.gg/M4KupzPxE" target="_blank" rel="noopener">Entrar no Discord</a></div></div>
+
+<main>
+<div class="bar">
+<div class="tabs" id="tabs"></div>
+<input type="search" id="q" placeholder="Buscar produto...">
+</div>
+<div class="grid" id="grid"></div>
+</main>
+<footer>© 2026 Real Tá On • Não afiliada à Roblox, Netflix, Disney ou demais marcas citadas.</footer>
+
+<div class="ov" id="ov"></div>
+<aside id="side" aria-label="Carrinho">
+<div class="ch"><h2>Seu carrinho</h2><button class="ib" id="cl">✕</button></div>
+<div class="items" id="items"></div>
+<div class="tot"><span>Total</span><span id="tot">R$ 0,00</span></div>
+<button class="add" id="ck">Finalizar pelo Discord</button>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const DISCORD="https://discord.gg/M4KupzPxE";
+const CATS={bf:"⚔️ Blox Fruits",ovo:"🥚 Roube um Ovo",st:"📺 Streaming"};
+let P=[
+{id:1,c:"bf",i:"🍎",n:"Conta Starter Lv 700",d:"Primeiro mar completo, itens básicos.",p:3,s:12},
+{id:2,c:"bf",i:"🌊",n:"Conta Segundo Mar Lv 1500",d:"Segundo mar liberado, espadas boas.",p:6,s:8},
+{id:3,c:"bf",i:"🔥",n:"Conta Max Lv 2550",d:"Terceiro mar, nível máximo, fruta rara.",p:10,s:5},
+{id:15,c:"bf",i:"🎸",n:"Conta God Human + Lv Máx + Soul Guitar",d:"Nível máximo, God Human e Soul Guitar.",p:20,s:5},
+{id:5,c:"bf",i:"👊",n:"Conta God Human + Sanguine",d:"Estilos de luta completos.",p:99.9,s:0},
+{id:14,c:"bf",i:"🍇",n:"Contas de Frutas via Trade",d:"Contas com frutas para trade. Valores em breve.",p:0,s:10},
+{id:6,c:"ovo",i:"🥚",n:"Conta Iniciante",d:"Ovos básicos e base montada.",p:4,s:20},
+{id:7,c:"ovo",i:"🐣",n:"Conta Ovos Raros",d:"Coleção com ovos raros desbloqueados.",p:8,s:7},
+{id:8,c:"ovo",i:"👑",n:"Conta Premium Completa",d:"Ovos lendários e pets de elite.",p:15,s:3},
+{id:12,c:"st",i:"🎵",n:"Spotify Premium 30 dias",d:"Música sem anúncios.",p:11.9,s:0}
+];
+let cat="bf",cart={},$=id=>document.getElementById(id);
+try{cart=JSON.parse(localStorage.getItem("cart")||"{}")}catch(e){}
+const brl=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const save=()=>{try{localStorage.setItem("cart",JSON.stringify(cart))}catch(e){}};
+const find=id=>P.find(x=>x.id==id);
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)}
+function tabs(){$("tabs").innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="tab ${k==cat?"on":""}" data-c="${k}">${v}</button>`).join("")}
+function grid(){
+const q=$("q").value.toLowerCase();
+const L=P.filter(x=>x.c==cat&&x.n.toLowerCase().includes(q));
+$("grid").innerHTML=L.length?L.map(x=>{
+const left=x.s-(cart[x.id]||0);
+const st=x.s==0?`<span class="stk out">Esgotado</span>`:x.s<=3?`<span class="stk low">Últimas ${x.s} unidades!</span>`:`<span class="stk ok">${x.s} em estoque</span>`;
+return`<div class="card"><div class="ico">${x.i}</div><h3>${x.n}</h3><p>${x.d}</p><div class="price">${x.p?brl(x.p):"Em breve"}</div>${st}<button class="add" data-a="${x.id}" ${left<=0||!x.p?"disabled":""}>${!x.p?"Preço em breve":x.s==0?"Indisponível":left<=0?"Limite no carrinho":"Adicionar"}</button></div>`}).join(""):`<div class="empty">Nenhum produto encontrado.</div>`}
+function cartUI(){
+const ids=Object.keys(cart).filter(k=>cart[k]>0);
+$("cc").textContent=ids.reduce((a,k)=>a+cart[k],0);
+let t=0;
+$("items").innerHTML=ids.length?ids.map(k=>{const x=find(k);t+=x.p*cart[k];return`<div class="it"><span>${x.i}</span><b>${x.n}<br><small>${brl(x.p)}</small></b><div class="q"><button data-m="${k}">−</button><span>${cart[k]}</span><button data-p="${k}">+</button></div></div>`}).join(""):`<div class="empty">Carrinho vazio</div>`;
+$("tot").textContent=brl(t);save()}
+function add(id){const x=find(id);if((cart[id]||0)>=x.s){toast("Estoque máximo atingido");return}cart[id]=(cart[id]||0)+1;cartUI();grid();toast(x.n+" adicionado")}
+function open(v){$("side").classList.toggle("on",v);$("ov").classList.toggle("on",v)}
+document.addEventListener("click",e=>{
+const t=e.target.closest("button");if(!t)return;
+if(t.dataset.c){cat=t.dataset.c;tabs();grid()}
+if(t.dataset.a)add(t.dataset.a);
+if(t.dataset.p)add(t.dataset.p);
+if(t.dataset.m){cart[t.dataset.m]--;if(cart[t.dataset.m]<=0)delete cart[t.dataset.m];cartUI();grid()}
+});
+$("cb").onclick=()=>open(true);$("cl").onclick=$("ov").onclick=()=>open(false);
+$("q").oninput=grid;
+$("ck").onclick=()=>{
+const ids=Object.keys(cart).filter(k=>cart[k]>0);
+if(!ids.length){toast("Carrinho vazio");return}
+let tot=0;const lines=ids.map(k=>{const x=find(k);tot+=x.p*cart[k];return`• ${cart[k]}x ${x.n} - ${brl(x.p*cart[k])}`});
+const msg=`Olá! Quero comprar:\n${lines.join("\n")}\nTotal: ${brl(tot)}`;
+ids.forEach(k=>{find(k).s-=cart[k]});cart={};cartUI();grid();open(false);
+try{navigator.clipboard.writeText(msg)}catch(e){}
+toast("Pedido copiado! Cole no Discord para finalizar.");
+setTimeout(()=>window.open(DISCORD,"_blank"),900);
+};
+tabs();grid();cartUI();
+</script>
+</body>
+</html>
